@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://bvkdsp104q64u"]
+
+[node name="LaunchArgs" type="LaunchArgs"]

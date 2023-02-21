@@ -1,0 +1,6 @@
+[gd_resource type="Item" load_steps=2 format=3 uid="uid://b01kq12yq53bg"]
+
+[ext_resource type="Texture2D" uid="uid://1jtjn8fw0k51" path="res://textures/dynamic/ui/crosshair.png" id="1_s2ph5"]
+
+[resource]
+texture = ExtResource("1_s2ph5")

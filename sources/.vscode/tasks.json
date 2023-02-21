@@ -1,0 +1,26 @@
+{
+// See https://go.microsoft.com/fwlink/?LinkId=733558
+// for the documentation about the tasks.json format
+"version": "2.0.0",
+"tasks": [
+    {
+        "label": "BuildDebug",
+        "type": "shell",
+        "command": "${workspaceFolder}/../../windows/python/python.exe ${workspaceFolder}/../../windows/scons/scons.py use_mingw=yes target=editor platform=windows bits=64",
+        "args": [],
+        "group":
+        {
+            "isDefault": true,
+            "kind": "build"
+        },
+        "options":
+        {
+            "cwd": "${workspaceFolder}/../",
+            "env": {
+                "PATH": "%PATH%;../windows/mingw/bin"
+            }
+        },
+        "problemMatcher": "$gcc"
+    },
+    ]
+}

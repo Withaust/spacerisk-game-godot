@@ -1,0 +1,199 @@
+[gd_scene load_steps=3 format=3 uid="uid://dabn4sl25aoyr"]
+
+[ext_resource type="Texture2D" uid="uid://1jtjn8fw0k51" path="res://textures/dynamic/ui/crosshair.png" id="1_g474q"]
+[ext_resource type="LabelSettings" uid="uid://3caxik722iu6" path="res://fonts/SubtitleLabel.res" id="3_jqxtn"]
+
+[node name="ui" type="UI"]
+
+[node name="root" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="crosshair" type="TextureRect" parent="root"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_g474q")
+
+[node name="chat" type="Chat" parent="root" node_paths=PackedStringArray("chat_entries", "input")]
+chat_entries = NodePath("VBoxContainer")
+input = NodePath("LineEdit")
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -298.0
+offset_right = 601.0
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="root/chat"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="root/chat"]
+layout_mode = 2
+placeholder_text = "Send message in chat, use / to send console command"
+
+[node name="interact_menu" type="InteractMenu" parent="root" node_paths=PackedStringArray("option")]
+option = NodePath("option")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.433
+anchor_top = 0.571593
+anchor_right = 0.567
+anchor_bottom = 0.613593
+offset_left = -0.360046
+offset_top = -0.320007
+offset_right = 0.359985
+offset_bottom = 0.319946
+grow_horizontal = 2
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="option" type="Label" parent="root/interact_menu"]
+layout_mode = 2
+text = "WWWWWWWWWWW"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="background" type="ColorRect" parent="root/interact_menu/option"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.282353, 0.282353, 0.282353, 1)
+
+[node name="subtitles" type="Label" parent="root"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -388.0
+offset_top = 252.0
+offset_right = 470.0
+offset_bottom = 441.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "This is an example subtitle font.
+
+This was never meant to be seen by a player.
+
+Something is wrong here..."
+label_settings = ExtResource("3_jqxtn")
+
+[node name="logs" type="Label" parent="root"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -949.0
+offset_top = -70.0
+offset_right = -91.0
+offset_bottom = 119.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 32
+text = "Resources aquired:
+[1x] Gear (Metal)"
+visible_characters = 18
+visible_ratio = 0.5
+
+[node name="debug_info" type="DebugInfo" parent="root" node_paths=PackedStringArray("contents", "group", "group_entry_name", "group_entry_value")]
+contents = NodePath("scroll/contents")
+group = NodePath("scroll/contents/group")
+group_entry_name = NodePath("scroll/contents/group/variables/names/name")
+group_entry_value = NodePath("scroll/contents/group/variables/values/value")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.835
+anchor_right = 1.0
+anchor_bottom = 1.015
+offset_left = -16.2001
+offset_bottom = -16.2001
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_vertical = 3
+color = Color(0.313726, 0.313726, 0.313726, 0.607843)
+
+[node name="scroll" type="ScrollContainer" parent="root/debug_info"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="contents" type="VBoxContainer" parent="root/debug_info/scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="group" type="VBoxContainer" parent="root/debug_info/scroll/contents"]
+layout_mode = 2
+
+[node name="name" type="Label" parent="root/debug_info/scroll/contents/group"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "TEXT"
+mouse_filter = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "TEXT"
+horizontal_alignment = 1
+
+[node name="variables" type="HBoxContainer" parent="root/debug_info/scroll/contents/group"]
+layout_mode = 2
+alignment = 1
+
+[node name="names" type="VBoxContainer" parent="root/debug_info/scroll/contents/group/variables"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="name" type="Label" parent="root/debug_info/scroll/contents/group/variables/names"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "TEXT"
+mouse_filter = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "TEXT"
+horizontal_alignment = 1
+
+[node name="values" type="VBoxContainer" parent="root/debug_info/scroll/contents/group/variables"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="value" type="Label" parent="root/debug_info/scroll/contents/group/variables/values"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "TEXT"
+mouse_filter = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "TEXT"
+horizontal_alignment = 1

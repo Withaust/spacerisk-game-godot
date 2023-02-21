@@ -1,0 +1,70 @@
+[gd_scene load_steps=4 format=3 uid="uid://bapq8bqae4smx"]
+
+[ext_resource type="CapsuleMesh" uid="uid://csncqe2ku4f2m" path="res://meshes/dynamic/player.tres" id="1_fo7ok"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_18o5y"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_85ucw"]
+albedo_color = Color(0, 0, 0, 1)
+
+[node name="soldier" type="Entity"]
+
+[node name="Body" type="CharacterBody3D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_18o5y")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = ExtResource("1_fo7ok")
+skeleton = NodePath("")
+
+[node name="Head" type="Marker3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Body/Head"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.299573)
+material_override = SubResource("StandardMaterial3D_85ucw")
+radius = 0.0184737
+height = 0.600017
+
+[node name="RayCast3D" type="RayCast3D" parent="Body/Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.65)
+exclude_parent = false
+target_position = Vector3(0, 0, -512)
+hit_from_inside = true
+debug_shape_custom_color = Color(0, 1, 1, 1)
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Body"]
+agent_height_offset = 0.1
+path_max_distance = 30.01
+avoidance_enabled = true
+debug_enabled = true
+
+[node name="Raycasts" type="Node3D" parent="Body"]
+
+[node name="RayCast3D" type="RayCast3D" parent="Body/Raycasts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 16, 16)
+target_position = Vector3(0, -32, 0)
+
+[node name="RayCast3D2" type="RayCast3D" parent="Body/Raycasts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 16, -16)
+target_position = Vector3(0, -32, 0)
+
+[node name="RayCast3D3" type="RayCast3D" parent="Body/Raycasts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 16, -16)
+target_position = Vector3(0, -32, 0)
+
+[node name="RayCast3D4" type="RayCast3D" parent="Body/Raycasts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 16, 16)
+target_position = Vector3(0, -32, 0)
+
+[node name="SoldierTransform" type="SoldierTransform" parent="." node_paths=PackedStringArray("body", "head")]
+body = NodePath("../Body")
+head = NodePath("../Body/Head")
+
+[node name="SoldierPathfinding" type="SoldierPathfinding" parent="." node_paths=PackedStringArray("agent", "raycasts_parent")]
+agent = NodePath("../Body/NavigationAgent3D")
+raycasts_parent = NodePath("../Body/Raycasts")

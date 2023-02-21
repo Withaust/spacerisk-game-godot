@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4j8p63ce04n7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fkim7"]
+
+[node name="TriggerMultiple" type="Area3D"]
+editor_description = "After instancing this scene into the level you need to convert it into the \"local\" scene (erase prefab link). I have no idea why, but when you resize Collision collider as an editable child, it constantly keeps getting reset and misalligned for some reason. Not like this prefab is of much use on its own, since TriggerMultiple component would rarely be used in its own trigger setup anyway."
+input_ray_pickable = false
+monitorable = false
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_fkim7")
+
+[node name="TriggerMultiple" type="TriggerMultiple" parent="." node_paths=PackedStringArray("trigger")]
+trigger = NodePath("..")

@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://yjc41ouhvn4u"]
+
+[ext_resource type="Material" uid="uid://cgk1ukiq4ul1v" path="res://materials/levels/door_frame.material" id="1_ckkip"]
+[ext_resource type="Material" uid="uid://cbi5ypt61673m" path="res://materials/levels/door.material" id="2_8pg8c"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_nrla3"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ktm5r"]
+size = Vector3(0.234, 3.301, 2.552)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p5lep"]
+size = Vector3(0.234, 3.301, 2.552)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_5ogh1"]
+properties/0/path = NodePath(".:direction")
+properties/0/spawn = true
+properties/0/sync = true
+
+[node name="Door" type="Entity"]
+
+[node name="Base" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.113, 0, 0, 0, 2.641, 0, 0.533636, 0)
+mesh = SubResource("BoxMesh_nrla3")
+surface_material_override/0 = ExtResource("1_ckkip")
+
+[node name="Base2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 3.31896, 0, 0, 0, 0.048, 0, 2.21788, -1.27886)
+mesh = SubResource("BoxMesh_nrla3")
+surface_material_override/0 = ExtResource("1_ckkip")
+
+[node name="Base3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 3.31896, 0, 0, 0, 0.048, 0, 2.21788, 1.29069)
+mesh = SubResource("BoxMesh_nrla3")
+surface_material_override/0 = ExtResource("1_ckkip")
+
+[node name="Base4" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.113, 0, 0, 0, 2.641, 0, 3.86262, 0)
+mesh = SubResource("BoxMesh_nrla3")
+surface_material_override/0 = ExtResource("1_ckkip")
+
+[node name="Hinge" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.8314, -1.27948)
+
+[node name="Base5" type="MeshInstance3D" parent="Hinge"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.64988, 1.27773)
+mesh = SubResource("BoxMesh_ktm5r")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("2_8pg8c")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Hinge/Base5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hinge/Base5/StaticBody3D"]
+shape = SubResource("BoxShape3D_p5lep")
+disabled = true
+
+[node name="DoorInteractable" type="DoorInteractable" parent="." node_paths=PackedStringArray("hinge")]
+hinge = NodePath("../Hinge")
+
+[node name="DoorPathfinding" type="DoorPathfinding" parent="." node_paths=PackedStringArray("collider")]
+collider = NodePath("../Hinge/Base5/StaticBody3D/CollisionShape3D")
+
+[node name="Sync" type="MultiplayerSynchronizer" parent="."]
+root_path = NodePath("../DoorInteractable")
+replication_interval = 0.05
+replication_config = SubResource("SceneReplicationConfig_5ogh1")

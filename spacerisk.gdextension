@@ -1,0 +1,10 @@
+[configuration]
+
+entry_symbol = "spacerisk_init"
+
+[libraries]
+
+windows.debug.x86_64 = "res://bin/spacerisk.windows.editor.x86_64.dll"
+windows.release.x86_64 = "res://bin/spacerisk.windows.release.x86_64.dll"
+linux.debug.x86_64 = "res://bin/libspacerisk.linux.editor.x86_64.so"
+linux.release.x86_64 = "res://bin/libspacerisk.linux.release.x86_64.so"

@@ -1,0 +1,9 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://crkh61sx0dubh"]
+
+[ext_resource type="FontFile" uid="uid://bhh16sykc4aiv" path="res://fonts/NewCinemaAStd-D.ttf" id="1_xb2i6"]
+
+[resource]
+base_font = ExtResource("1_xb2i6")
+variation_transform = Transform2D(0.842, 0, 0, 1, 0, 0)
+spacing_space = 1
+spacing_bottom = -11

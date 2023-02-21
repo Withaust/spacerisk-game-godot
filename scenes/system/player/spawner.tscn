@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0qsx43472luh"]
+
+[ext_resource type="PackedScene" uid="uid://deulws2imvmjk" path="res://scenes/dynamic/player/player.tscn" id="1_121s0"]
+
+[node name="PlayerSpawner" type="PlayerSpawner" node_paths=PackedStringArray("players")]
+players = NodePath("Players")
+player_scene = ExtResource("1_121s0")
+
+[node name="Players" type="Node" parent="."]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://scenes/dynamic/player/player.tscn")
+spawn_path = NodePath("../Players")

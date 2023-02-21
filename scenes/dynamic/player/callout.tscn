@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvi7fysj5j0g6"]
+
+[ext_resource type="Material" uid="uid://du8skf8h5dken" path="res://materials/dynamic/player/callout.material" id="1_j7g3w"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ve6yf"]
+material = ExtResource("1_j7g3w")
+size = Vector2(0.1, 0.1)
+orientation = 2
+
+[node name="callout" type="Node3D"]
+
+[node name="mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_ve6yf")
